@@ -34,7 +34,7 @@ const buscarIndexSelecao = (id)=> {
 
 // ENDPOINT : parte final da url ex. /selecoes ou /alunos
 app.get('/', (req, res)=>{
-    res.send('careca é legal');
+    res.send('Listagem bem sucedida');
 })
 
 // exibe selecoes 
@@ -66,6 +66,14 @@ app.delete('/selecoes/:id', (req, res)=>{
     let index = buscarIndexSelecao(req.params.id);
     selecoes.splice(index, 1);
     res.send(`selecao com id ${req.params.id} excluída com sucesso`)
+})
+
+// rota para atualizar
+app.put('/selecoes/:id', (req, res)=>{
+    let index = buscarIndexSelecao(req.params.id);
+    selecoes[index].selecao = req.body.selecao;
+    selecoes[index].grupo = req.body.grupo;
+    res.json(selecoes);
 })
 
 
